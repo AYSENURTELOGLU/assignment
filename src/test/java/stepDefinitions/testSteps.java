@@ -66,41 +66,27 @@ public class testSteps {
           if (currentPageNumber == 10) {
               rowsPerPage = 5; // Son sayfadaki satır sayısı
           }
+          double columnTotal = 0;
+          for (int i = 2; i < 9; i++) {
+              for (int j = 1; j <= 10; j++) {
+                  WebElement cell = Driver.getDriver().findElement(By.xpath("(//tbody/tr/td[" + i + "])[" + j + "]"));
+                  double value = Double.parseDouble(cell.getText().replaceAll("[^\\d.]", ""));
+                  columnTotal += value;
+              }
+          }
+          columnTotals += columnTotal;
 
-        double columnTotal = 0;
-        for (int i = 2; i < 9; i++) {
-
-            for (int j = 1; j <= rowsPerPage; j++) {
-                WebElement cell = Driver.getDriver().findElement(By.xpath("(//tbody/tr/td[" + i + "])[" + j + "]"));
-                double value = Double.parseDouble(cell.getText().replaceAll("[^\\d.]", ""));
-                columnTotal += value;
-            }
-
-            WebElement totalCell = Driver.getDriver().findElement(By.xpath("(//tbody/tr/td[" + i + "])[" + (rowsPerPage + 1) + "]"));
-            double grandTotal= Double.parseDouble(totalCell.getText().replaceAll("[^\\d.]", ""));
-            System.out.println(i + " .column sums:" + columnTotal + " and " + grandTotal + " was seen as Grand Total");
-        }
-
-          columnTotals +=columnTotal;
           Actions actions = new Actions(Driver.getDriver()); // Click next button to navigate to the next page
           actions.moveToElement(historyPage.nextButton).perform();
           ReusableMethods.wait(1);
           historyPage.nextButton.click();
           currentPageNumber++; // Sayfa numarasını bir arttır
-
-    }
-
-
-
- /*     int[] grandTotals= new int[7];
-      for (int i = 2; i <=8 ; i++) {
-        WebElement totalCell = Driver.getDriver().findElement(By.xpath("(//tbody/tr/td[" + i + "])[11]"));
-        int grandTotal=Integer.parseInt(totalCell.getText().replaceAll("\\W", ""));
-        grandTotals[i-2] = grandTotal;
-        System.out.println(grandTotals[i] + " ");
       }
-
-  */
+        for (int i = 2; i < 9 ; i++) {
+            WebElement totalCell = Driver.getDriver().findElement(By.xpath("(//tbody/tr/td[" + i + "])[11]"));
+            double grandTotal = Double.parseDouble(totalCell.getText().replaceAll("[^\\d.]", ""));
+            System.out.println(i + " .column sums:" + columnTotals + " and " + grandTotal + " was seen as Grand Total");
+        }
 
 
     }
