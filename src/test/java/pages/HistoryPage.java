@@ -76,6 +76,13 @@ public class HistoryPage {
     @FindBy(xpath = "(//tbody/tr/td[8])[11]")
     public WebElement totalAmountOfFeb2023;
 
+    @FindBy(xpath = "(//*[name()='svg'][@class='MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root'])[3]")
+    public WebElement nextButton;
+    // (//*[name()='svg'][@class='MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root'])[3]  ---- relxPath
+    // /html[1]/body[1]/div[1]/div[3]/main[1]/div[1]/div[1]/div[4]/div[1]/div[2]/div[1]/button[2]/*[name()='svg'][1]/*[name()='path'][1]
+
+
+
 
 
 }
