@@ -1,3 +1,4 @@
+/*
 package stepDefinitions;
 
 import Utilities.ConfigReader;
@@ -27,7 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class testSteps {
+public class clisma {
 
     HistoryPage historyPage= new HistoryPage();
     TransactionsPage transactionsPage= new TransactionsPage();
@@ -87,6 +88,7 @@ public class testSteps {
             double grandTotal = Double.parseDouble(totalCell.getText().replaceAll("[^\\d.]", ""));
             System.out.println(i + " .column sums:" + columnTotals + " and " + grandTotal + " was seen as Grand Total");
         }
+
 
     }
 
@@ -185,5 +187,40 @@ public class testSteps {
     public void closes_the_page() { Driver.closeDriver();}
 
 }
+
+
+
+//tek sayfa için olan;
+
+double columnTotals=0;
+
+          double columnTotal = 0;
+          for (int i = 2; i < 9; i++) {
+              for (int j = 1; j <= 10; j++) {
+                  WebElement cell = Driver.getDriver().findElement(By.xpath("(//tbody/tr/td[" + i + "])[" + j + "]"));
+                  double value = Double.parseDouble(cell.getText().replaceAll("[^\\d.]", ""));
+                  columnTotal += value;
+              }
+          }
+
+          Actions actions = new Actions(Driver.getDriver()); // Click next button to navigate to the next page
+          actions.moveToElement(historyPage.nextButton).perform();
+          ReusableMethods.wait(1);
+         // historyPage.nextButton.click();
+
+          // }
+        for (int i = 2; i < 9 ; i++) {
+            WebElement totalCell = Driver.getDriver().findElement(By.xpath("(//tbody/tr/td[" + i + "])[11]"));
+            double grandTotal = Double.parseDouble(totalCell.getText().replaceAll("[^\\d.]", ""));
+            System.out.println(i + " .column sums:" + columnTotal + " and " + grandTotal + " was seen as Grand Total");
+        }
+
+
+
+
+
+
+
+*/
 
 

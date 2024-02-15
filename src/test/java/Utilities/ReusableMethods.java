@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.function.Function;
 
 import org.openqa.selenium.JavascriptExecutor;
+import pages.HistoryPage;
 
 public class ReusableMethods {
 
@@ -107,6 +108,47 @@ public class ReusableMethods {
     public static void clickWithJS(WebDriver driver, WebElement element) {
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
     }
+
+
+  /*  public static void toplamlariTestEt() {
+        Actions actions = new Actions(Driver.getDriver());
+        double expSum = 0;
+        HistoryPage historyPage = new HistoryPage();
+        actions.moveToElement(historyPage.DDM).perform();
+        historyPage.DDM.click();
+        historyPage.row50.click();
+        int currentPageNumber = 1;
+        for (int i = 2; i < 9; i++) {
+            int rowsPerPage = 50; // Her sayfadaki satır sayısı
+            if (currentPageNumber == 3) {
+                rowsPerPage = 6; // Son sayfadaki satır sayısı
+            }
+
+            //List<WebElement> tableOrder = Driver.getDriver().findElements(By.xpath("//td[" + i + "]"));
+            WebElement actSumElement = Driver.getDriver().findElement(By.xpath("(//tbody/tr/td[" + i + "])[" + (rowsPerPage + 1) + "]"));
+
+            for (int j = 1; j <= 50; j++) {
+                WebElement cell = Driver.getDriver().findElement(By.xpath("(//tbody/tr/td[" + i + "])[" + rowsPerPage + "]"));
+                String deger = cell.getText().replaceAll("[^\\d.]", "");
+                expSum += Double.parseDouble(deger);
+            }
+
+            String actSumStr = actSumElement.getText().replaceAll("[^\\d.]", "");
+            double actSum = Double.parseDouble(actSumStr);
+            // double epsilon = 0.01; // İki double değeri karşılaştırırken kabul edilebilir hata payını belirtmek için kullanılır.
+            System.out.println(i + " .column sums:" + expSum + " and " + actSum + " was seen as Grand Total");
+            actions.moveToElement(historyPage.nextButton).perform();
+            ReusableMethods.wait(2);
+            historyPage.nextButton.click();
+            currentPageNumber++;
+
+            softAssert.assertEquals(actSum, expSum);
+        }
+        softAssert.assertAll();
+    }
+
+   */
+
 
 
 }
